@@ -12,10 +12,10 @@ pathname = "/home/abhijit331/Text-Mining/"
 CleanCorpus = function(corpus)
 {
  corpus.tmp = tm_map(corpus,removePunctuation)
- corpus.tm = tm_map(corpus.tmp,stripWhitespace)
- corpus.tm = tm_map(corpus.tmp,tolower)
- corpus.tm = tm_map(corpus.tmp,removeWords,stopwords("english"))
- return(corpus.tm)
+ corpus.tmp = tm_map(corpus.tmp,stripWhitespace)
+ #corpus.tmp = tm_map(corpus.tmp,tolower)
+ corpus.tmp = tm_map(corpus.tmp,removeWords,stopwords("english"))
+ return(corpus.tmp)
 }
 
 generateTDM = function(cand,path){
