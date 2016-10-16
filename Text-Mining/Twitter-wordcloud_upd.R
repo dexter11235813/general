@@ -8,7 +8,7 @@ library(RWeka)
 
 setup_twitter_oauth(consumer_key,consumer_secret,access_token,access_token_secret)
 
-target.tweets = searchTwitter("Modi",n = 1000,lang = "en")
+target.tweets = searchTwitter("Kojima",n = 5000,lang = "en")
 ######
 
 target.tweets.text = sapply(target.tweets,function(x) x$getText())  
