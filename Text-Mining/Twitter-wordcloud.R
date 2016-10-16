@@ -6,11 +6,6 @@ library(wordcloud)
 library(RColorBrewer)
 library(RWeka)
 
-consumer_key = "PKIqzBYSv4TRN4SnR8MXnW1kQ"
-consumer_secret = "ZRWS4RXUDDe4o3FWArxUofthP7zjnUa3lv7gzwRSYQMqtWkJi9"
-access_token = "99661008-tNkqwsS4cKWiK4ov2VOzuB1h9NIPPfEjB9qn0fqRa"
-access_token_secret = "GHjsDvBE0qLAYA38sEC2FJU8mQfyVwOnxJn5OeKTSxdWT"
-
 setup_twitter_oauth(consumer_key,consumer_secret,access_token,access_token_secret)
 
 target.tweets = searchTwitter("Modi",n = 1000,lang = "en")
