@@ -8,7 +8,7 @@ library(RWeka)
 
 setup_twitter_oauth(consumer_key,consumer_secret,access_token,access_token_secret)
 
-target.tweets = searchTwitter("Kojima",n = 5000,lang = "en")
+target.tweets = searchTwitter("Hillary",n = 1000,lang = "en")
 ######
 
 target.tweets.text = sapply(target.tweets,function(x) x$getText())  
@@ -42,3 +42,4 @@ term_freq =  rev(sort(term_freq))
 
 word_freqs = data.frame(term = names(term_freq), num  = term_freq)
 wordcloud(word_freqs$term,word_freqs$num,max.words = 100,color = brewer.pal(10,"PuOr")[-(1:2)])
+
