@@ -1,7 +1,7 @@
 library(RSelenium)
 
 
-dr = rsDriver(port = "Enter Port Number here",browser = c("firefox"))
+dr = rsDriver(port = 4675L,browser = c("firefox"))
 remDr = dr$client
 
 remDr$navigate("https://www.google.com")
@@ -27,12 +27,12 @@ remDr$navigate("https://web.whatsapp.com")
 remDr$getTitle()
 
 
-anu = remDr$findElement(using = "xpath",'//span[contains(text(),"John Doe")]') # Replace John Doe with contact/group name
-anu$clickElement()
+per = remDr$findElement(using = "xpath",'//span[contains(text(),"John Doe")]') # Replace John Doe with contact/group name
+per$clickElement()
 
 chat = remDr$findElement(using = 'css selector','.chat')
   
-chat$sendKeysToElement(list("Enter text here",key = 'enter'))
+chat$sendKeysToElement(list("Sent from R",key = 'enter'))
 #chat$clearElement()
-
+chat$closeServer()
 
