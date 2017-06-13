@@ -46,6 +46,30 @@ dat$names = sapply(dat$names,function(x) removecom(x))
 
 ##
 library(tm)
+library(h2o)
+h2o.init()
 dat.corpus = Corpus(VectorSource(dat$names))
 dat.dtm = as.data.frame(as.matrix(DocumentTermMatrix(dat.corpus)))
 dat.dtm = cbind(dat.dtm,dat$Win)
+
+# data.clean = clean.corpus(data.corpus)
+# dtm = DocumentTermMatrix(data.clean)
+# dtm = as.matrix(removeSparseTerms(dat.dtm,0.85))
+# dtm = as.data.frame(dtm)
+# dtm = cbind(dtm,Document = data$Document)
+# dtm$Document = as.factor(dtm$Document)
+
+index = sample(nrow(dat.dtm),ceiling(nrow(dat.dtm) * .7))
+train = dat.dtm[index,]
+test = dat.dtm[-index,]
+
+
+model = h2o.deeplearning(x = 1:(ncol(train)-1),y = ncol(train),training_frame = as.h2o(train))
+x = predict(model,as.h2o(test[,-ncol(test)]))
+# model = randomForest(Document~.,data = train)
+# x = predict(model,test[,-ncol(test)])
+conf.table = table(Actual = test[,ncol(test)],Prediction = as.data.frame(x)[,1])
+# 
+# sum(diag(conf.table)/length(x))
+# conf.table
+# 
